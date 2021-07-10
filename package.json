@@ -31,6 +31,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://dnwd843.github.io/todo-react-ts/",
   "browserslist": {
     "production": [
       ">0.2%",
