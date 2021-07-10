@@ -39,7 +39,7 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
    * @since v.1.0.0
    * @public
    */
-  const handlePressEnter = (evt: React.KeyboardEvent):void => {
+  const handlePressEnter = (evt: React.KeyboardEvent): void => {
     if (evt.key === 'Enter') {
       onAddTodo(value);
       setValue('');
@@ -47,7 +47,7 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
   }
 
   return (
-      <div className="input-field mt2">
+    <div className="input-field mt2">
       <input
         value={value}
         onChange={handleInputChange}
@@ -56,9 +56,9 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
         id="title"
         placeholder="Введите название дела"
       />
-        <label htmlFor="title" className="active">
-          Введите название дела
-        </label>
-      </div>
+      <label htmlFor="title" className="active">
+        Введите название дела
+      </label>
+    </div>
   )
 }

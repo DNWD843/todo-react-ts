@@ -20,9 +20,17 @@ code {
   margin-top: 2rem;
 }
 
+.mt2 input {
+  color: darkorchid;
+}
+
 .todo {
   margin-bottom: 1rem;
 }
+.todo span {
+  color: darkmagenta;
+}
+
 
 .todo.completed span{
   text-decoration: line-through;
@@ -40,4 +48,14 @@ code {
 
 .todo i {
   z-index: 2;
+}
+
+.no-todos-title {
+  color: darkmagenta;
+}
+.centered-content {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ITodo } from '../interfaces';
+import { TODOLIST_IS_EMPTY } from '../constants/constants';
 
 type TodoListProps = {
   todos: ITodo[],
@@ -9,6 +10,7 @@ type TodoListProps = {
 }
 
 export const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, handleClickDeleteIcon }) => {
+  if (!todos.length) { return <h5 className="center no-todos-title">{TODOLIST_IS_EMPTY }</h5 >}
     return (
       <ul>
         {todos.map(todo => {
