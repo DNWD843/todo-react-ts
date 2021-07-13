@@ -5,30 +5,52 @@ type TodoProps = {
     id: number,
     completed: boolean,
     todoText: string,
+    isImportant: boolean,
     onToggle: (id: number) => void,
     handleClickDeleteIcon: (id: number) => void,
+    onTogglePriority: (id: number) => void,
 }
 
-export const Todo: React.FC<TodoProps> = ({ id, completed, todoText, onToggle, handleClickDeleteIcon }) => {
-    
-    const todoClassName = classNames("todo", {
-        "completed": completed
-      })
+export const Todo: React.FC<TodoProps> = ({
+    id,
+    completed,
+    todoText,
+    isImportant,
+    onToggle,
+    handleClickDeleteIcon,
+    onTogglePriority }) => {
+
+    const todoClassName = classNames("todo ", {
+        "completed": completed,
+        "important": isImportant
+    })
+
+    const priorityIconClassName = classNames("material-icons purple-text", {
+        "text-darken-3": isImportant,
+        "text-lighten-1": !isImportant
+    })
 
     return (
-        <li key={id } className={ todoClassName } >
-              <label >
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  checked={completed}
-                  onChange={() => onToggle(id)}
+        <li key={id} className={todoClassName} >
+            <label className="label">
+                    <input
+                    id="checkbox"
+                    type="checkbox"
+                    checked={completed}
+                    onChange={() => onToggle(id)}
                 />
-                <span >{ todoText }</span>
+                <span >{todoText}</span>
+                
+            </label>
+            <div className="icons">
                 <i
-                  className="material-icons red-text"
-                  onClick={() => handleClickDeleteIcon(id)} >delete</i>
-              </label>
-            </li>
+                    className={priorityIconClassName}
+                    onClick={() => onTogglePriority(id)}
+                >priority_high</i>
+                <i
+                    className="material-icons red-text"
+                    onClick={() => handleClickDeleteIcon(id)} >delete</i>
+            </div>
+        </li>
     )
 };

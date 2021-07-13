@@ -25,29 +25,52 @@ code {
 }
 
 .todo {
+  display: flex;
   margin-bottom: 1rem;
+  background-color: rgb(246, 235, 253);
+  padding: 1rem;
+  border-radius: .5rem;
 }
+
 .todo span {
   color: darkmagenta;
 }
 
 
-.todo.completed span{
+.todo.completed span {
   text-decoration: line-through;
 }
 
-.todo label {
+.todo.important span { 
+color: rgb(102, 4, 105);
+font-weight: bold;
+}
+
+.label{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  padding: 1rem;
-  background: #f3f3f3;
+ 
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 1rem;
+
 }
 
 .todo i {
   z-index: 2;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.todo i:last-of-type {
+  margin-right: 0;
 }
 
 .no-todos-title {
