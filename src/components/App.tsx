@@ -12,6 +12,7 @@ const App: React.FC = () => (
       <Switch>
         <Route path="/" exact component={ MainPage } />
         <Route path="/about" component={About} />
+        <Route component={MainPage}/>
       </Switch>
       
     </div>
