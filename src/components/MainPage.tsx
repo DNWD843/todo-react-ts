@@ -38,8 +38,6 @@ export const MainPage: React.FC = () => {
     }))
   }, [todos])
 
-
-
   const handleClickDeleteIcon = useCallback((id: number): void => {
     setTodos(prev => prev.filter(todo => todo.id !== id));
   }, [])

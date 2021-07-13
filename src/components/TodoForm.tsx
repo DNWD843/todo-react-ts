@@ -39,26 +39,34 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
    * @since v.1.0.0
    * @public
    */
-  const handlePressEnter = (evt: React.KeyboardEvent): void => {
-    if (evt.key === 'Enter') {
-      onAddTodo(value);
-      setValue('');
-    }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    onAddTodo(value);
+    setValue('');
   }
 
   return (
-    <div className="input-field mt2">
-      <input
-        value={value}
-        onChange={handleInputChange}
-        onKeyPress={handlePressEnter}
-        type="text"
-        id="title"
-        placeholder="Введите название дела"
-      />
-      <label htmlFor="title" className="active">
-        Введите название дела
-      </label>
-    </div>
+    <form onSubmit={handleSubmit} className="add-todo-form">
+      <div className="input-field mt2">
+        <input
+          value={value}
+          onChange={handleInputChange}
+          type="text"
+          id="title"
+          placeholder="Введите название дела"
+        />
+        <label htmlFor="title" className="active">
+          Введите название дела
+        </label>
+      </div>
+      <button
+        type="submit"
+        disabled={!value}
+      >
+        <i
+          className="material-icons purple-text text-darken-2">add</i>
+      </button>
+
+    </form>
   )
 }

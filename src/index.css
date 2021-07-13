@@ -11,16 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.add-todo-form {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .padding-lr {
   padding: 0 1rem;
+}
+.input-field {
+  width: 100%;
 }
 
 .mt2 {
   margin-top: 2rem;
 }
 
+.add-todo-form button {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all ease-in-out .15s;
+  border-radius: .25rem;
+}
+.add-todo-form button:disabled {
+ background-color: rgb(228, 226, 226);
+}
+
+.add-todo-form button:disabled:hover {
+  transform: none;
+  text-shadow: none;
+  cursor: not-allowed;
+}
+
+
+.add-todo-form button:hover {
+  transform: scale(1.25);
+  text-shadow: 0 0 2px rebeccapurple;
+}
+
+
 .mt2 input {
+  
   color: darkorchid;
 }
 
@@ -59,7 +94,7 @@ font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 0 1rem;
+  padding: 0 0 0 1rem;
 
 }
 
@@ -67,6 +102,12 @@ font-weight: bold;
   z-index: 2;
   margin-right: 1rem;
   cursor: pointer;
+  transition: all ease-in-out .15s;
+}
+
+.todo i:hover {
+  transform: scale(1.25);
+  
 }
 
 .todo i:last-of-type {
