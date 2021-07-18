@@ -2,19 +2,22 @@ import React, { useContext } from 'react';
 import { TodoForm } from './TodoForm';
 import { TodoList } from './TodoList';
 import { TodosContext } from '../contexts/todosContext';
+import { FilteredListContext } from '../contexts/filteredListContext';
 import { IMainPageProps } from '../interfaces';
-import { SearchForm } from './FilterPanel';
+import { FilterPanel } from './FilterPanel';
 
 export const MainPage: React.FC<IMainPageProps> = (props) => {
-  const { handleAddTodo, toggleTodo, handleClickDeleteIcon, togglePriority } = props;
+  const { handleAddTodo, toggleTodo, handleClickDeleteIcon, togglePriority, setFilteredListToState } = props;
   const todos = useContext(TodosContext);
+  const filteredList = useContext(FilteredListContext);
+  const isFiltered: boolean = !!filteredList.length;
 
   return (
     <>
       <TodoForm onAddTodo={handleAddTodo} />
-      <SearchForm />
+      <FilterPanel setFilteredListToState={setFilteredListToState} />
       <TodoList
-        todos={todos}
+        todos={isFiltered ? filteredList : todos}
         onToggle={toggleTodo}
         handleClickDeleteIcon={handleClickDeleteIcon}
         onTogglePriority={togglePriority}

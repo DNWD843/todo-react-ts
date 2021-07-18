@@ -7,12 +7,15 @@ import { About } from './About';
 import { Header } from './Header';
 import { MainPage } from './MainPage';
 import { TodosContext } from '../contexts/todosContext';
+import { FilteredListContext } from '../contexts/filteredListContext';
 
 const App: React.FC = () => {
 
   const { Provider: TodosProvider } = TodosContext;
+  const { Provider: FilteredListProvider } = FilteredListContext;
 
   const [todos, setTodos] = useState<ITodo[]>(getDataFromStorage(TODOS_KEY));
+  const [filteredList, setFilteredList] = useState<ITodo[]>([]);
 
   const handleAddTodo = useCallback((todoText: string): void => {
     const newTodo: ITodo = {
@@ -22,7 +25,7 @@ const App: React.FC = () => {
       isImportant: false,
     }
     setTodos(prev => [newTodo, ...prev]);
-  }, [])
+  }, []);
 
   const toggleTodo = useCallback((id: number) => {
 
@@ -32,7 +35,7 @@ const App: React.FC = () => {
       }
       return todo;
     }))
-  }, [todos])
+  }, [todos]);
 
   const togglePriority = useCallback((id: number) => {
     setTodos(todos.map(todo => {
@@ -41,11 +44,16 @@ const App: React.FC = () => {
       }
       return todo
     }))
-  }, [todos])
+  }, [todos]);
 
   const handleClickDeleteIcon = useCallback((id: number): void => {
     setTodos(prev => prev.filter(todo => todo.id !== id));
-  }, [])
+  }, []);
+
+  const setFilteredListToState = (newFilteredList: ITodo[]): void => {
+    if ((!filteredList.length) && !newFilteredList.length) return;
+    setFilteredList(newFilteredList);
+   };
 
   /* useEffect(() => {
     setTodos(getDataFromStorage(TODOS_KEY));
@@ -53,11 +61,12 @@ const App: React.FC = () => {
 
   useEffect(() => {
     setDataToStorage(TODOS_KEY, todos)
-  }, [todos])
+  }, [todos]);
 
   return (
 
     <TodosProvider value={todos}>
+      <FilteredListProvider value={filteredList} >
       <Header />
       <div className="container">
         <Switch>
@@ -70,7 +79,7 @@ const App: React.FC = () => {
                 toggleTodo={toggleTodo}
                 togglePriority={togglePriority}
                 handleClickDeleteIcon={handleClickDeleteIcon}
-
+                setFilteredListToState={setFilteredListToState}
               />)}
           />
 
@@ -80,6 +89,7 @@ const App: React.FC = () => {
           </Route>
         </Switch>
       </div>
+      </FilteredListProvider>
     </TodosProvider>
   );
 

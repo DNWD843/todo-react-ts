@@ -2,9 +2,9 @@ import React, { useState, useContext } from 'react';
 import { TodosContext } from '../contexts/todosContext';
 import classNames from 'classnames';
 import { SEARCH_FORM_INPUT_LABEL, SEARCH_FORM_INPUT_PLACEHOLDER } from '../constants/constants';
-import { ITodo } from '../interfaces';
+import { ITodo, IFilterPanelProps } from '../interfaces';
 
-export const SearchForm = () => {
+export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}) => {
     const todosList = useContext(TodosContext);
     const [value, setValue] = useState<string>('')
 
@@ -28,26 +28,31 @@ export const SearchForm = () => {
             .filter(todo => todo
                 .todoText
                 .toLowerCase()
-                .includes(evt.target.value.toLowerCase()))
+                .includes(evt.target.value.toLowerCase()));
+        setFilteredListToState(filteredList);
         
     }
 
     const handleClickImportantButton = ():void => {
         const filteredList: ITodo[] = todosList
             .filter(todo => todo.isImportant);
+        setFilteredListToState(filteredList);
         }
 
     const handleClickDoneButton = (): void => {
         const filteredList: ITodo[] = todosList
-            .filter(todo => todo.completed)
+            .filter(todo => todo.completed);
+        setFilteredListToState(filteredList);
        }
 
     const handleClickActiveButton = (): void => {
-        const filteredList: ITodo[] = todosList.filter(todo => !todo.completed)
+        const filteredList: ITodo[] = todosList.filter(todo => !todo.completed);
+        setFilteredListToState(filteredList);
     }
 
     const handleClickResetButton = () => {
-        console.log('YO! reset is clicked!!!!');
+        setFilteredListToState([]);
+        setValue('');
     }
 
     /**
@@ -60,7 +65,6 @@ export const SearchForm = () => {
      */
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-console.log('YO! submit !')
         setValue('');
     }
 
