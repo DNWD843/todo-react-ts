@@ -1,17 +1,20 @@
 import React from "react";
 import classNames from 'classnames';
+import { ITodoProps } from "../interfaces";
 
+/*
+Можно указать типы пропс в виде объекта типов.
 type TodoProps = {
-    id: number,
-    completed: boolean,
-    todoText: string,
-    isImportant: boolean,
-    onToggle: (id: number) => void,
-    handleClickDeleteIcon: (id: number) => void,
-    onTogglePriority: (id: number) => void,
-}
+    id: number
+    completed: boolean
+    todoText: string
+    isImportant: boolean
+    onToggle: (id: number) => void
+    handleClickDeleteIcon: (id: number) => void
+    onTogglePriority: (id: number) => void
+} */
 
-export const Todo: React.FC<TodoProps> = ({
+export const Todo: React.FC<ITodoProps> = ({
     id,
     completed,
     todoText,
@@ -33,14 +36,14 @@ export const Todo: React.FC<TodoProps> = ({
     return (
         <li key={id} className={todoClassName} >
             <label className="label">
-                    <input
+                <input
                     id="checkbox"
                     type="checkbox"
                     checked={completed}
                     onChange={() => onToggle(id)}
                 />
                 <span >{todoText}</span>
-                
+
             </label>
             <div className="icons">
                 <i

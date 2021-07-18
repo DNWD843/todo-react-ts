@@ -62,7 +62,7 @@ code {
 .todo {
   display: flex;
   margin-bottom: 1rem;
-  background-color: rgb(246, 235, 253);
+  background-color: rgb(249, 242, 253);
   padding: 1rem;
   border-radius: .5rem;
 }

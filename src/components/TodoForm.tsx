@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-/**
- * Интерфейс пропсов компонента TodoForm
- */
-interface ITodoFormProps {
-  onAddTodo(todoText: string): void
-}
+import { ITodoFormProps } from "../interfaces";
 
 /**
  * @function TodoForm
