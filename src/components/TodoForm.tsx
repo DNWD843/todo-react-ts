@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ITodoFormProps } from "../interfaces";
+import classNames  from "classnames";
 
 /**
  * @function TodoForm
@@ -14,6 +15,12 @@ import { ITodoFormProps } from "../interfaces";
 export const TodoForm: React.FC<ITodoFormProps> = (props) => {
   const [value, setValue] = useState<string>('')
   const { onAddTodo } = props;
+
+  const addIconClassName = classNames("material-icons", 
+    {
+      "purple-text text-darken-2": value,
+      "grey-text text-lighten-1": !value
+  } )
   /**
    * @method handleInputChange
    * @description Обработчик ввода значений в инпут добавления задачи
@@ -59,7 +66,7 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
         disabled={!value}
       >
         <i
-          className="material-icons purple-text text-darken-2">add</i>
+          className={addIconClassName}>add</i>
       </button>
 
     </form>

@@ -30,7 +30,7 @@ export const Todo: React.FC<ITodoProps> = ({
 
     const priorityIconClassName = classNames("material-icons purple-text", {
         "text-darken-3": isImportant,
-        "text-lighten-1": !isImportant
+        "text-accent-1": !isImportant
     })
 
     return (

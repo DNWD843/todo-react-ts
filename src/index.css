@@ -37,8 +37,9 @@ code {
   transition: all ease-in-out .15s;
   border-radius: .25rem;
 }
-.add-todo-form button:disabled {
- background-color: rgb(228, 226, 226);
+.add-todo-form button:disabled{
+ /*background-color: rgb(228, 226, 226);*/
+ background: transparent;
 }
 
 .add-todo-form button:disabled:hover {
@@ -62,9 +63,13 @@ code {
 .todo {
   display: flex;
   margin-bottom: 1rem;
-  background-color: rgb(249, 242, 253);
+  background-color: rgb(248, 238, 253);
   padding: 1rem;
   border-radius: .5rem;
+}
+
+.todo.important {
+  background-color: rgb(240, 223, 250);
 }
 
 .todo span {
