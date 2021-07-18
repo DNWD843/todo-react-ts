@@ -7,10 +7,17 @@ import { IMainPageProps } from '../interfaces';
 import { FilterPanel } from './FilterPanel';
 
 export const MainPage: React.FC<IMainPageProps> = (props) => {
-  const { handleAddTodo, toggleTodo, handleClickDeleteIcon, togglePriority, setFilteredListToState } = props;
+  const {
+    handleAddTodo,
+    toggleTodo,
+    handleClickDeleteIcon,
+    togglePriority,
+    setFilteredListToState,
+    isFiltered,
+  } = props;
   const todos = useContext(TodosContext);
   const filteredList = useContext(FilteredListContext);
-  const isFiltered: boolean = !!filteredList.length;
+  //const isFiltered: boolean = !!filteredList.length;
 
   return (
     <>

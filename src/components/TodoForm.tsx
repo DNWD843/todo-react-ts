@@ -55,7 +55,7 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
           value={value}
           onChange={handleInputChange}
           type="text"
-          id="title"
+          id="add-form-title"
           placeholder={TODO_FORM_INPUT_PLACEHOLDER}
         />
         <label htmlFor="title" className="active">

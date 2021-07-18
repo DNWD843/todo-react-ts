@@ -29,29 +29,28 @@ export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}
                 .todoText
                 .toLowerCase()
                 .includes(evt.target.value.toLowerCase()));
-        setFilteredListToState(filteredList);
-        
+        setFilteredListToState(filteredList, true);
     }
 
     const handleClickImportantButton = ():void => {
         const filteredList: ITodo[] = todosList
             .filter(todo => todo.isImportant);
-        setFilteredListToState(filteredList);
+        setFilteredListToState(filteredList, true);
         }
 
     const handleClickDoneButton = (): void => {
         const filteredList: ITodo[] = todosList
             .filter(todo => todo.completed);
-        setFilteredListToState(filteredList);
+        setFilteredListToState(filteredList, true);
        }
 
     const handleClickActiveButton = (): void => {
         const filteredList: ITodo[] = todosList.filter(todo => !todo.completed);
-        setFilteredListToState(filteredList);
+        setFilteredListToState(filteredList, true);
     }
 
     const handleClickResetButton = () => {
-        setFilteredListToState([]);
+        setFilteredListToState([], false);
         setValue('');
     }
 
@@ -76,7 +75,7 @@ export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}
                         value={value}
                         onChange={handleInputChange}
                         type="text"
-                        id="title"
+                        id="filter-panel-title"
                         placeholder={SEARCH_FORM_INPUT_PLACEHOLDER}
                     />
                     <label htmlFor="title" className="active">

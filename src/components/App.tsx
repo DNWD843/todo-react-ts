@@ -16,6 +16,7 @@ const App: React.FC = () => {
 
   const [todos, setTodos] = useState<ITodo[]>(getDataFromStorage(TODOS_KEY));
   const [filteredList, setFilteredList] = useState<ITodo[]>([]);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   const handleAddTodo = useCallback((todoText: string): void => {
     const newTodo: ITodo = {
@@ -50,14 +51,14 @@ const App: React.FC = () => {
     setTodos(prev => prev.filter(todo => todo.id !== id));
   }, []);
 
-  const setFilteredListToState = (newFilteredList: ITodo[]): void => {
-    if ((!filteredList.length) && !newFilteredList.length) return;
+  const setFilteredListToState = (newFilteredList: ITodo[], isFilteredNewValue: boolean): void => {
+    if (isFiltered !== isFilteredNewValue) {
+    setIsFiltered(isFilteredNewValue);
+    }
+    if (!filteredList.length && !newFilteredList.length) return;
     setFilteredList(newFilteredList);
+    
    };
-
-  /* useEffect(() => {
-    setTodos(getDataFromStorage(TODOS_KEY));
-  }, [])  */
 
   useEffect(() => {
     setDataToStorage(TODOS_KEY, todos)
@@ -80,6 +81,7 @@ const App: React.FC = () => {
                 togglePriority={togglePriority}
                 handleClickDeleteIcon={handleClickDeleteIcon}
                 setFilteredListToState={setFilteredListToState}
+                isFiltered={isFiltered}
               />)}
           />
 
