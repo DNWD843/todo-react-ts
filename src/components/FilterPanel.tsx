@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { TodosContext } from '../contexts/todosContext';
 import classNames from 'classnames';
 import { SEARCH_FORM_INPUT_LABEL, SEARCH_FORM_INPUT_PLACEHOLDER } from '../constants/constants';
+import { ITodo } from '../interfaces';
 
 export const SearchForm = () => {
     const todosList = useContext(TodosContext);
@@ -23,8 +24,30 @@ export const SearchForm = () => {
      */
     const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
         setValue(evt.target.value);
-        const filteredList = todosList.filter(todo => todo.todoText.includes(evt.target.value))
+        const filteredList: ITodo[] = todosList
+            .filter(todo => todo
+                .todoText
+                .toLowerCase()
+                .includes(evt.target.value.toLowerCase()))
+        
+    }
 
+    const handleClickImportantButton = ():void => {
+        const filteredList: ITodo[] = todosList
+            .filter(todo => todo.isImportant);
+        }
+
+    const handleClickDoneButton = (): void => {
+        const filteredList: ITodo[] = todosList
+            .filter(todo => todo.completed)
+       }
+
+    const handleClickActiveButton = (): void => {
+        const filteredList: ITodo[] = todosList.filter(todo => !todo.completed)
+    }
+
+    const handleClickResetButton = () => {
+        console.log('YO! reset is clicked!!!!');
     }
 
     /**
@@ -37,7 +60,7 @@ export const SearchForm = () => {
      */
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-
+console.log('YO! submit !')
         setValue('');
     }
 
@@ -64,26 +87,29 @@ export const SearchForm = () => {
                     <i
                         id="search-icon"
                         className={searchIconClassName}
-                        onClick={() => { }}
                     >search</i>
                 </button>
             </div>
 
             <button
+                type="button"
                 className="filter-button waves-effect waves-light btn-small"
-                onClick={() => { }}
+                onClick={handleClickResetButton}
             >Reset</button>
             <button
+                type="button"
                 className="filter-button waves-effect waves-light btn-small "
-                onClick={() => { }}
+                onClick={handleClickImportantButton}
             >Important</button>
             <button
+                type="button"
                 className="filter-button waves-effect waves-light btn-small"
-                onClick={() => { }}
+                onClick={handleClickDoneButton}
             >Done</button>
             <button
+                type="button"
                 className="filter-button waves-effect waves-light btn-small"
-                onClick={() => { }}
+                onClick={handleClickActiveButton}
             >Active</button>
 
         </form>
