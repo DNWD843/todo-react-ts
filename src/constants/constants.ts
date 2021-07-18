@@ -1,6 +1,11 @@
 export const TODOS_KEY:string = 'todos';
-export const TODOLIST_IS_EMPTY:string = "Запланированных дел пока нет.";
-export const BACK_BUTTON_LABEL:string = "Назад к списку дел";
+export const TODOLIST_IS_EMPTY:string = "You haven`t any to-do at this time!";
+export const BACK_BUTTON_LABEL:string = "Back to the to-do list";
 export const LOGO_TEXT:string = "React & Typescript";
-export const TODOLIST_LINK_LABEL:string = "Список дел";
-export const ABOUT_LINK_LABEL:string = "О приложении";
+export const TODOLIST_LINK_LABEL:string = "To-do list";
+export const ABOUT_LINK_LABEL: string = "About application";
+export const TODO_FORM_INPUT_LABEL: string = "Add a new to-do";
+export const TODO_FORM_INPUT_PLACEHOLDER: string = "Type a new to-do here";
+export const TODO_FORM_ADD_BUTTON_TITLE: string = "Add a to-do";
+export const SEARCH_FORM_INPUT_LABEL: string = "Find a to-do by a keyword"
+export const SEARCH_FORM_INPUT_PLACEHOLDER: string = "Type a keyword here"

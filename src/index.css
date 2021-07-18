@@ -7,20 +7,38 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  padding: 1rem 0;
+  box-sizing: border-box;
 }
-.add-todo-form {
+
+.todo-form {
   width:100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid rgb(246, 104, 246);
+  border-radius: 1rem;
+  padding: .5rem 1rem 0;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.todo-form:last-of-type {
+  margin-right: 0;
 }
 
 .padding-lr {
   padding: 0 1rem;
 }
+
+.form-field {
+  padding-right: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+}
+
 .input-field {
   width: 100%;
 }
@@ -29,29 +47,43 @@ code {
   margin-top: 2rem;
 }
 
-.add-todo-form button {
+button[id="add-submit"],
+button[id="search-submit"] {
   background: transparent;
   outline: none;
   border: none;
   cursor: pointer;
   transition: all ease-in-out .15s;
   border-radius: .25rem;
+  padding: 0;
 }
-.add-todo-form button:disabled{
+
+button[id="add-submit"]:disabled, 
+button[id="search-submit"]:disabled {
  /*background-color: rgb(228, 226, 226);*/
  background: transparent;
 }
 
-.add-todo-form button:disabled:hover {
+button[id="add-submit"]:disabled:hover, 
+button[id="search-submit"]:disabled:hover {
   transform: none;
   text-shadow: none;
   cursor: not-allowed;
 }
 
 
-.add-todo-form button:hover {
+button[id="add-submit"]:hover, 
+button[id="search-submit"]:hover {
   transform: scale(1.25);
   text-shadow: 0 0 2px rebeccapurple;
+}
+
+.todo-form .filter-button {
+  margin: 0.25rem;
+  width: 10rem;
+  text-transform: none;
+  padding: 0.125rem;
+  box-sizing: content-box;
 }
 
 
@@ -110,7 +142,7 @@ font-weight: bold;
   transition: all ease-in-out .15s;
 }
 
-.todo i:hover {
+.todo i:hover  {
   transform: scale(1.25);
   
 }

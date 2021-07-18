@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ITodoFormProps } from "../interfaces";
 import classNames  from "classnames";
+import { TODO_FORM_INPUT_LABEL, TODO_FORM_INPUT_PLACEHOLDER, TODO_FORM_ADD_BUTTON_TITLE } from "../constants/constants";
 
 /**
  * @function TodoForm
@@ -48,22 +49,24 @@ export const TodoForm: React.FC<ITodoFormProps> = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="add-todo-form">
+    <form onSubmit={handleSubmit} className="todo-form">
       <div className="input-field mt2">
         <input
           value={value}
           onChange={handleInputChange}
           type="text"
           id="title"
-          placeholder="Введите название дела"
+          placeholder={TODO_FORM_INPUT_PLACEHOLDER}
         />
         <label htmlFor="title" className="active">
-          Введите название дела
+          {TODO_FORM_INPUT_LABEL}
         </label>
       </div>
       <button
+        id="add-submit"
         type="submit"
         disabled={!value}
+        title={value ? TODO_FORM_ADD_BUTTON_TITLE : ''}
       >
         <i
           className={addIconClassName}>add</i>
