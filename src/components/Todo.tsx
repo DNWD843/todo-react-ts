@@ -1,10 +1,11 @@
 import React from "react";
 import classNames from 'classnames';
 import { ITodoProps } from "../interfaces";
+import { DELETE_ICON_TYPE, PRIORITY_ICON_TYPE } from "../constants/constants";
 
 /*
 Можно указать типы пропс в виде объекта типов.
-type TodoProps = {
+type TTodoProps = {
     id: number
     completed: boolean
     todoText: string
@@ -26,12 +27,12 @@ export const Todo: React.FC<ITodoProps> = ({
     const todoClassName = classNames("todo ", {
         "completed": completed,
         "important": isImportant
-    })
+    });
 
     const priorityIconClassName = classNames("material-icons purple-text", {
         "text-darken-3": isImportant,
         "text-accent-1": !isImportant
-    })
+    });
 
     return (
         <li key={id} className={todoClassName} >
@@ -42,18 +43,18 @@ export const Todo: React.FC<ITodoProps> = ({
                     checked={completed}
                     onChange={() => onToggle(id)}
                 />
-                <span >{todoText}</span>
-
+                <span>{todoText}</span>
             </label>
+
             <div className="icons">
                 <i
                     className={priorityIconClassName}
                     onClick={() => onTogglePriority(id)}
-                >priority_high</i>
+                >{PRIORITY_ICON_TYPE}</i>
                 <i
                     className="material-icons red-text"
-                    onClick={() => handleClickDeleteIcon(id)} >delete</i>
+                    onClick={() => handleClickDeleteIcon(id)}>{DELETE_ICON_TYPE}</i>
             </div>
         </li>
-    )
+    );
 };

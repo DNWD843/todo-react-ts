@@ -17,7 +17,6 @@ export const MainPage: React.FC<IMainPageProps> = (props) => {
   } = props;
   const todos = useContext(TodosContext);
   const filteredList = useContext(FilteredListContext);
-  //const isFiltered: boolean = !!filteredList.length;
 
   return (
     <>
@@ -30,7 +29,5 @@ export const MainPage: React.FC<IMainPageProps> = (props) => {
         onTogglePriority={togglePriority}
       />
     </>
-  )
-}
-
-
+  );
+};

@@ -1,27 +1,28 @@
 import React, { useState, useContext } from 'react';
 import { TodosContext } from '../contexts/todosContext';
 import classNames from 'classnames';
-import { SEARCH_FORM_INPUT_LABEL, SEARCH_FORM_INPUT_PLACEHOLDER } from '../constants/constants';
-import { ITodo, IFilterPanelProps } from '../interfaces';
+import {
+    SEARCH_FORM_INPUT_LABEL,
+    SEARCH_FORM_INPUT_PLACEHOLDER,
+    RESET_BUTTON_TEXT,
+    IMPORTANT_BUTTON_TEXT,
+    DONE_BUTTON_TEXT,
+    ACTIVE_BUTTON_TEXT,
+    SEARCH_ICON_TYPE,
+    EMPTY_VALUE,
+} from '../constants/constants';
+import { ITodo, IFilterPanelProps} from '../interfaces';
 
-export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}) => {
+export const FilterPanel: React.FC<IFilterPanelProps> = ({ setFilteredListToState }) => {
     const todosList = useContext(TodosContext);
-    const [value, setValue] = useState<string>('')
+    const [value, setValue] = useState<string>(EMPTY_VALUE)
 
     const searchIconClassName = classNames("material-icons",
         {
             "purple-text text-darken-2": value,
-            "grey-text text-lighten-1": !value
-        })
+            "grey-text text-lighten-1": !value,
+        });
 
-    /**
-     * @method handleInputChange
-     * @description Обработчик ввода значений в инпут добавления задачи
-     * @param {SyntheticEvent} evt - событие
-     * @returns {void} void
-     * @since v.1.0.0
-     * @public
-     */
     const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
         setValue(evt.target.value);
         const filteredList: ITodo[] = todosList
@@ -32,17 +33,17 @@ export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}
         setFilteredListToState(filteredList, true);
     }
 
-    const handleClickImportantButton = ():void => {
+    const handleClickImportantButton = (): void => {
         const filteredList: ITodo[] = todosList
             .filter(todo => todo.isImportant);
         setFilteredListToState(filteredList, true);
-        }
+    }
 
     const handleClickDoneButton = (): void => {
         const filteredList: ITodo[] = todosList
             .filter(todo => todo.completed);
         setFilteredListToState(filteredList, true);
-       }
+    }
 
     const handleClickActiveButton = (): void => {
         const filteredList: ITodo[] = todosList.filter(todo => !todo.completed);
@@ -51,20 +52,12 @@ export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}
 
     const handleClickResetButton = () => {
         setFilteredListToState([], false);
-        setValue('');
+        setValue(EMPTY_VALUE);
     }
 
-    /**
-     * @method handlePressEnter
-     * @description Обработчик нажатия на "Enter" - сохранения набранной задачи
-     * @param {SyntheticEvent} evt - событие
-     * @returns {void} void
-     * @since v.1.0.0
-     * @public
-     */
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        setValue('');
+        setValue(EMPTY_VALUE);
     }
 
     return (
@@ -90,7 +83,7 @@ export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}
                     <i
                         id="search-icon"
                         className={searchIconClassName}
-                    >search</i>
+                    >{SEARCH_ICON_TYPE}</i>
                 </button>
             </div>
 
@@ -98,23 +91,22 @@ export const FilterPanel:React.FC<IFilterPanelProps> = ({setFilteredListToState}
                 type="button"
                 className="filter-button waves-effect waves-light btn-small"
                 onClick={handleClickResetButton}
-            >Reset</button>
+            >{RESET_BUTTON_TEXT}</button>
             <button
                 type="button"
                 className="filter-button waves-effect waves-light btn-small "
                 onClick={handleClickImportantButton}
-            >Important</button>
+            >{IMPORTANT_BUTTON_TEXT}</button>
             <button
                 type="button"
                 className="filter-button waves-effect waves-light btn-small"
                 onClick={handleClickDoneButton}
-            >Done</button>
+            >{DONE_BUTTON_TEXT}</button>
             <button
                 type="button"
                 className="filter-button waves-effect waves-light btn-small"
                 onClick={handleClickActiveButton}
-            >Active</button>
-
+            >{ACTIVE_BUTTON_TEXT}</button>
         </form>
-    )
-}
+    );
+};

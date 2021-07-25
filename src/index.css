@@ -160,3 +160,21 @@ font-weight: bold;
   align-items: center;
   justify-content: center;
 }
+
+.navlink_selected {
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  
+  
+  transition: all ease-in-out .125s;
+}
+
+.navlink:hover {
+  background-color: blueviolet;
+}
+
+.app-description {
+  white-space: pre;
+  text-align: center;
+}

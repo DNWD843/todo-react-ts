@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ITodo } from '../interfaces';
-import { TODOS_KEY } from '../constants/constants';
+import { TODOS_KEY, TO_MAIN_PAGE, TO_ABOUT_PAGE } from '../constants/constants';
 import { getDataFromStorage, setDataToStorage } from '../utils/storage';
 import { About } from './About';
 import { Header } from './Header';
@@ -65,14 +65,13 @@ const App: React.FC = () => {
   }, [todos]);
 
   return (
-
     <TodosProvider value={todos}>
       <FilteredListProvider value={filteredList} >
       <Header />
       <div className="container">
         <Switch>
           <Route
-            path="/"
+            path={TO_MAIN_PAGE}
             exact
             render={() => (
               <MainPage
@@ -85,18 +84,16 @@ const App: React.FC = () => {
               />)}
           />
 
-          <Route path="/about" component={About} />
+          <Route path={TO_ABOUT_PAGE} component={About} />
+            
           <Route>
-            <Redirect to="/" />
+            <Redirect to={TO_MAIN_PAGE} />
           </Route>
         </Switch>
       </div>
       </FilteredListProvider>
     </TodosProvider>
   );
-
-
 }
-
 
 export default App;
