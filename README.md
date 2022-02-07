@@ -1,10 +1,10 @@
 ### Description    
 
 This is a simple Todo application, made with React, TypeScript and MaterializeCSS library.    
-You can add a Todo, that will be saved in youre browser's LocalStorage.   
-Also you can delete a Todo, set them high priority or mark them as 'Done'.    
-A FilterPanel gives you possibility to search a Todo by a keyword, filter     
-youre Todos by next attributes: 'Active', 'Done', 'Important' and reset    
+You can add Todo, that will be saved in youre browser's LocalStorage.   
+Also you can delete Todo, set high priority or mark as 'Done'.    
+A FilterPanel gives you possibility to find Todo by keyword, filter     
+your Todos by next attributes: 'Active', 'Done', 'Important' or reset    
 filter settings.    
 
 
